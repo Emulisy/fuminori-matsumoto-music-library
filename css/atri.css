@@ -1,0 +1,434 @@
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    z-index: 9999;
+    animation: fadeOut 2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+}
+
+.background {
+    position: relative;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    background-image: url(../pic/atri_cg/background.jpg);
+    font: 900 25em '';
+    overflow: hidden;
+    text-align: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -99;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: inherit;
+}
+
+.shell-container {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    background-color: rgb(143, 217, 245);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#v-line{
+    height: 0;
+    width: 1px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 23%;
+    left: 50%;
+}
+
+
+#v-line.grow{
+    animation: growDown 1s ease-out forwards;
+}
+
+@keyframes growDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: 13%;
+    }
+}
+
+#buffer-p1{
+    position: absolute;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+#buffer-p2{
+    position: absolute;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    top: 41%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.shell{
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    width: 70%;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.box{
+    flex: 1;
+    overflow: hidden;
+    transition: .5s;
+    margin: 0 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    background-color: #ffffff;
+}
+
+.box>img{
+    width: 200%;
+    height: 85%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.box>span{
+    font: 200 15px;
+    font-family: Georgia, "游明朝", "Yu Mincho", "游明朝体", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho ProN", "MS P明朝", "MS PMincho", HGS明朝E, "MS Mincho", serif;
+    text-align: center;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:rgb(82, 163, 221)
+}
+
+.box:hover{
+    flex-basis: 40%;
+}
+
+.box:hover>img{
+    width: 100%;
+    height: 100%;
+}
+
+::webkit-scrollbar{
+    display: none;
+}
+
+.music-container {
+    background-color: rgba(240, 248, 255, 0.7);
+    border-radius: 15px;
+    display: flex;
+    padding: 20px 30px;
+    position: relative;
+    margin: 70px 0;
+    z-index: 10;
+}
+
+.img-container {
+    position: relative;
+    width: 110px;
+}
+
+.img-container::after {
+    content: "";
+    background-color: rgba(240, 248, 255, 0.7);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    /* 旋转 */
+    transform: translate(-50%, 50%);
+}
+
+.img-container img {
+    border-radius: 50%;
+    height: 110px;
+    width: inherit;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* 封面360°旋转，默认不动 */
+    animation: rotate 3s linear infinite;
+    animation-play-state: paused;
+}
+
+.music-container.play .img-container img {
+    /* 播放 */
+    animation-play-state: running;
+}
+
+/* 定义旋转动画 */
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.action-btn {
+    /* 取消默认样式 */
+    border: 0;
+    background-color: rgba(240, 248, 255, 0.7);
+    /* ----- */
+    color: #0decfc;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 20px;
+    border-radius: 15px;
+}
+
+.action-btn:focus {
+    /* 取消默认样式 */
+    outline: 0;
+}
+
+.action-btn.action-btn-big {
+    color: #0cdae9;
+    font-size: 30px;
+}
+
+.music-info {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    /* 父元素宽度-40px */
+    width: 50%;
+    background-color: rgba(240, 248, 255, 0.7);
+    border-radius: 15px 15px 0 0;
+    padding: 10px 10px 10px 150px;
+    /* 没播放时默认隐藏 */
+    opacity: 0;
+    transform: translateY(0%);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    z-index: 0;
+}
+
+.music-info h4 {
+    /* 取消默认边距 */
+    margin: 0;
+}
+
+.music-container.play .music-info {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+
+.progress-container {
+    background-color: rgba(240, 248, 255, 0.7);
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    height: 4px;
+    width: 100%;
+}
+
+.progress {
+    background-color: #0decfc;
+    border-radius: 5px;
+    height: 100%;
+    /* 一开始进度条长度为0 */
+    width: 0%;
+    transition: width 0.1s linear;
+
+}
+
+.gallery-scroll-box {
+    height: 100vh;
+    width: 100%;
+    background-image: url("../pic/atri_bg/bg004e.jpg");
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
+}
+
+.gallery-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5vw;
+    gap: 10vw;
+    min-width: max-content;
+}
+
+.gallery-text-wrapper {
+    width: 75vw;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    font-family: YakuHanJP, noto-sans-cjk-jp, "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, Verdana, sans-serif;
+    gap: 30px;
+    flex-shrink: 0;
+}
+
+.gallery-text-wrapper h2 {
+    font-size: 5vw;
+    color: white;
+    margin: 0;
+    text-align: left;
+    text-shadow: 2px 2px 4px rgba(61, 61, 61, 0.5);
+}
+
+.gallery-text-wrapper p {
+    font-size: 1.5vw;
+    text-align: justify;
+    margin-right: 35%;
+    border-right: solid 1px gray;
+    padding-right: 50px;
+    color: white;
+    margin-right: 30%;
+    text-shadow: 2px 2px 4px rgba(81, 78, 78, 0.5);
+}
+
+.gallery-img-box {
+    height:40%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.gallery-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 8px 8px 0 gray;
+    transition: transform 0.5s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.gallery-img-box img:hover{
+    transform: scale(1.1);
+    transform-origin: center;
+    border: 3px solid #ffffff;
+    box-shadow: 0 8px 8px 0 gray;
+}
+
+.end-note {
+    color: white;
+    font-family: YakuHanJP, noto-sans-cjk-jp, "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, Verdana, sans-serif;
+    font-size: 1.5em;
+}
+
+.scroll-down {
+    color: white;
+    font-family: YakuHanJP, noto-sans-cjk-jp, "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, Verdana, sans-serif;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4vw;
+}
+
+.scroll-down img {
+    width: 1vw;
+}
+
+.scroll-down img:hover{
+    transform: translateY(10px);
+    transition: transform 1s ease;
+}
+
+/* Initial hidden state */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateX(-80%);
+}
+
+/* When element becomes visible */
+.animate-on-scroll.visible {
+    animation: slidein 1s ease-out forwards;
+}
+
+/* Define the slide-in animation */
+@keyframes slidein {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+

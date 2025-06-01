@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="atriAsset/css/style.css" />
+		<style>
+			body,
+			html {
+				padding: 0;
+				margin: 0;
+				font-family: Arial, sans-serif;
+				display: block;
+			}
+
+			.startwaves {
+				position: fixed;
+				display: flex;
+				justify-content: center;
+				height: 120vh;
+				width: 100%;
+				background-color: #469ce5;
+				transform: translateY(-10vh);
+				animation-name: down;
+				animation-duration: 3s;
+				animation-delay: 1s;
+				animation-timing-function: ease-out;
+				z-index: 999;
+			}
+
+			@keyframes down {
+				0% {
+					transform: translateY(-10vh);
+				}
+
+				100% {
+					transform: translateY(110vh);
+				}
+
+			}
+
+			.waves {
+				display: block;
+				position: absolute;
+				bottom: 120vh;
+				width: 100%;
+			}
+
+			#centertext {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+				opacity: 0;
+				animation: fadeIn 1s ease forwards,
+						   fadeOut 1.5s ease forwards 2.5s;
+			}
+			
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+
+			@keyframes moveUp {
+				0% {
+					transform: translate(-50%, -50%);
+				}
+				100% {
+					transform: translate(-50%, calc(-50% - 30px));
+				}
+			}
+
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+					display: none;
+				}
+			}
+
+			p {
+				font-size: 20px;
+				background-image: linear-gradient(
+					white ,
+					rgb(159, 206, 231),
+					rgb(61, 198, 236) 50%,
+					rgb(8, 136, 221) 100%
+				);
+				background-clip: text;
+				-webkit-background-clip: text;
+    			color: transparent;
+				font-family: "游明朝", "Yu Mincho", "游明朝体", YuMincho, "ヒラギノ明朝 Pro", "Hiragino Mincho ProN", "MS P明朝", "MS PMincho", HGS明朝E, "MS Mincho", serif;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+				transform: translateX(6px);
+				display: inline-block;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="startwaves" id="downout">
+			<div class="waves">
+				<img src="atriAsset/img/waves/wave-1.svg" />
+				<img src="atriAsset/img/waves/wave-2.svg" />
+				<img src="atriAsset/img/waves/wave-3.svg" />
+				<img src="atriAsset/img/waves/wave-4.svg" />
+				<img src="atriAsset/img/waves/wave-5.svg" id="shape" />
+			</div>
+		</div>
+		<div id="centertext">
+			<img src="pic/logo.png" style="width: 250px;"/>
+			<br>
+			<br>
+			<hr width=400px color=gray style="margin-left: 30px; margin-right: 30px;">
+			<p>沈みゆく世界で、君をみつけた。</p>
+		</div>
+		<script>
+			var downwave = document.getElementById('downout');
+			
+			// 添加动画结束事件监听器
+			downwave.addEventListener('animationend', function() {
+				downwave.style.display = 'none'
+				window.location.href = 'atri.html';
+			});
+		</script>
+	</body>
+</html>

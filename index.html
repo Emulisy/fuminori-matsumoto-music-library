@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuminori Matsumoto's Music Library</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <h1 class="navTitle"> 沈みゆく世界で、君をみつけた。</h1>
+        <ul class="nav-links">
+            <li><a href="music library.html">Main</a></li>
+            <li><a href="atriSceneChange.html" id="atri">Atri</a></li>
+            <li><a href="#">Sakura no Uta</a></li>
+            <li><a href="#">Wonderful everyday</a></li>
+        </ul>
+        <div class="audio-control" onclick="toggleAudio()">
+            <img id="soundOn" src="pic/btn_sound_on.png" alt="Sound On">
+            <img id="soundOff" src="pic/btn_sound_off.png" alt="Sound Off">
+        </div>
+    </nav>
+    
+    <div id="blue-circle"></div>
+      
+      
+    
+    <!-- The notice modal -->
+    <div id="noticeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal(false)">&times;</span>
+            <h2>Welcome to Fuminori Matsumoto's Music Library!</h2>
+            <p>This site contains background music and visuals.</p>
+            <div class="modal-buttons">
+                <button onclick="closeModal(true)" class="modal-btn play-btn">Play Music & Continue</button>
+                <button onclick="closeModal(false)" class="modal-btn close-btn">Continue Without Music</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The background overlay -->
+    <div class="background-overlay"></div>
+    
+    <!-- The background-video -->
+    <video class="background-video" autoplay loop muted playsinline preload="auto">
+        <source src="vid/mylivewallpapers.com-Atri-My-Dear-Moments-4K.mp4" type="video/mp4">
+    </video>
+    <!-- The background-audio -->
+    <audio id="bgAudio" class="background-audio" loop>
+        <source src="audio/20 親愛なるあの日々へ.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Text body -->
+    <div id="content-container">
+        <div class="row1">
+            <h1 class="header">Fuminori Matsumoto's Music Library</h1>
+            <h2 class="header">Introduction</h2>
+            <p>
+                This project archives some of Fuminori Matsumoto
+                (<a href="https://fuminori-matsumoto.netlify.app/" target="_blank">松本文紀</a>)
+                's music pieces that I found most appealing from famous 
+                <a href="https://zh.wikipedia.org/wiki/%E8%A7%86%E8%A7%88%E5%B0%8F%E8%AF%B4" target="_blank">visual novels(ビジュアルノベル)</a>
+                , namely 
+                <a href="https://en.wikipedia.org/wiki/Wonderful_Everyday" target="_blank">素晴らしき日々 ～不連続存在～</a>(Wonderful Everyday: Diskontinuierliches Dasein), 
+                <a href="https://en.wikipedia.org/wiki/Sakura_no_Uta" target="_blank">サクラノ詩－櫻の森の上を舞う－</a>(sakura no uta) and its sequal, sakura no toki, and 
+                <a href="https://en.wikipedia.org/wiki/Atri:_My_Dear_Moments" target ="_blank">ATRI -My Dear Moments</a>.
+                <br>
+                Unlike other games, visual novels require almost no interactions from player as nearly entire time of game play is spent
+                on simply reading texts on the screen which are either dialogs or inner thoughts of the characters. Therefore the manufacturers
+                spent tramendous effort on the script as well as the background music and graphics to make the story more engaging. In this site,
+                we will dive into the music pieces composed by Fuminori Matsumoto.
+            </p>
+        </div>
+        <hr width="80%">
+        <div class="row2">
+            <img src="pic/logo.png" style="width: 20%">
+        </div>
+        <div class="row3">
+            <div class="video-box">
+                <iframe class="box" width="560" height="315" src="https://www.youtube-nocookie.com/embed/ni3i4VBVH9U?si=RdhZgHbxb6cgKrYh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    
+            </div>
+            <div class="text-box">
+                <p>
+                Atri is a visual novel developed by Frontwing and Makura, two Japanese visual novel studio in 2020.
+                It presents a <i>Klara and the Sun</i> story in a different scenario, where a robot named Atri gained 
+                a heart in literal sense and therefore learned to love, and to protect everything she cherishes. The story
+                is set on a small island isolated from the world because of sea level rise, where Atri was found under the
+                sea by the main character, Ikaruga Natsuki and spent her dearest moments together with Natuski and his friends.
+                More information regarding the background of the story can be found in the 
+                <a href="https://atri-mdm.com/story/" target="_blank">Atri's official website</a>.
+                </p>
+            </div>
+        </div>
+        <div class="row2">
+            <img src="pic/Sakura_no_Uta_logo.jpg" style="width: 20%">
+        </div>
+        <div class="row4">
+            <div class="video-box">
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/5-9sqUZZXaY?si=wmoXceDuaE3mo5mr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="text-box">
+                <p>
+                Sakura no Uta is developed by Makura and released in 2015. The game won the faver of readers globally with its fascinating story and well-designed
+                graphics and audios. It illustrates a story of young artists in a small town named Yumihari, who are creating art in literal and actual sense (lol). 
+                The series discusses the essence of art and beauty aiming to promote the unique aesthetics value of the writter, while integrating the theme in the 
+                normal life of the young artists who are still in high school. 
+                </p>
+            </div>
+        </div>
+        <div class="row5">
+            <div class="video-box">
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/V0Y0m3H4TpM?si=HTXf1msINcZzUer7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="text-box">
+                <p>
+                Sakura no Toki is the sequal of Sakura no Uta. It is also developed by Makura and was released in 2023. The game discloses the untold story both after and 
+                before the events in Sakura no Uta. Compared with its predecessor, the game obtained a broader view as the stage is set in a wide range of locations, nevertheless 
+                the main stage is still Yumihari. Although the theme is still about the appreciation of art, the story encourages 
+                readers to reevaluate the meaning of art in our daily life as well as taking an in-depth look at the the inner world of art geniuses, enabling readers 
+                to witness their efforts, struggles and growth. 
+                </p>
+            </div>
+        </div>
+        <div class="row2">
+            <img src="pic/suba_logo.png" style="width: 20%">
+        </div>
+        <div class="row6">
+            <div class="text-box">
+                <p>
+                Wonderful Everyday is developed by KeroQ and was released in 2010, which was given an international release in 2017 by Frontwing.
+                The story is themed around campus bullying, violence, drugs, myths, sex, religion, Schizophrenia and other dark but realistic sides of human lives.
+                However, it is also a story about love, wishes, philosophy and enlightement. The game is by no means an full interpretation of important life issues and
+                doubts, but serves as a key for readers to the doors of self-reflection. Sometimes having the question is much more important than merely having the answers.
+                </p>
+            </div>
+            <div class="video-box">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/AGiBgpCCKl8?si=TdPAWVKJ2xBYPF4v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div class = "back-to-top" id="back-to-top"><img src="pic/arrow-up.png"><div>
+    <script>
+        function closeModal(playMusic) {
+            document.getElementById("noticeModal").style.display = "none";
+            if (playMusic) {
+                toggleAudio();
+            }
+        }
+        // audio control
+        const audio = document.getElementById('bgAudio');
+        const soundOn = document.getElementById('soundOn');
+        const soundOff = document.getElementById('soundOff');
+        let isPlaying = false;
+
+        // Set initial state
+        audio.muted = true;
+        updateSoundIcon();
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.muted = true;
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.muted = false;
+                isPlaying = true;
+                audio.play();
+            }
+            updateSoundIcon();
+        }
+
+        // update the soundOn/Off img
+        function updateSoundIcon() {
+            if (isPlaying) {
+                soundOn.style.display = 'block';
+                soundOff.style.display = 'none';
+            } else {
+                soundOn.style.display = 'none';
+                soundOff.style.display = 'block';
+            }
+        }
+    </script>
+    <script src="floatIn.js"></script>
+    <script src="navbarClick.js"></script>
+</body>
+</html>
