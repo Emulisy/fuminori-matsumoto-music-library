@@ -39,6 +39,7 @@
             <div id="buffer-p2" class="text">
                 WITH YOU
             </div>
+            <p id="buffer-p3">click to switch songs~</p>
         </div>
         <div class="shell">
             <div class="box">
@@ -186,6 +187,8 @@
         const title = document.getElementById("title")
         const musicCover = document.getElementById("music-cover")
 
+        const shellBox = document.querySelectorAll(".box")
+
         // 音乐信息
         const songs = ["凪", "光放て!", "Dear Moments", "暖かな時間", "海中都市", "親愛なるあの日々へ", "黄昏期の風景"]
         // 默认从第一首开始
@@ -194,7 +197,7 @@
         loadSong(songs[songIndex])
         // 更新歌曲细节
         function loadSong(song) {
-            title.innerHTML = song
+            title.textContent = song;
             audio.src = `audio/atri audio/${song}.mp3`;     
             musicCover.src = `pic/atri_cg/${song}.png`;
         }
@@ -239,6 +242,23 @@
             loadSong(songs[songIndex]);
 
             playSong();
+        }
+
+        //跳转到一首歌曲
+        function jumpToSong(song){
+            loadSong(song)
+            playSong();
+        }
+
+        for(let i = 0; i < shellBox.length; i++){
+            const img = shellBox[i].querySelector('img');
+            const songName = shellBox[i].querySelector('span').textContent;
+            if(img){
+                img.addEventListener('click', () => {
+                    console.log(songName);
+                    jumpToSong(songName);
+                });
+            }
         }
 
         // 进度条更新
@@ -295,6 +315,8 @@
         audio.ontimeupdate = updateProgress
         // 3.3 歌曲结束后自动下一首
         audio.onended = nextSong
+
+
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

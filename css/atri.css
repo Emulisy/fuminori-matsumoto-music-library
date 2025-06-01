@@ -120,6 +120,13 @@ html, body {
     margin: 0;
 }
 
+#buffer-p3{
+    color: white;
+    position:absolute;
+    bottom: 40%;
+    left: 5%;
+}
+
 .shell{
     position: absolute;
     bottom: 100px;
