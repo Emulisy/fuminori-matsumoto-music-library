@@ -132,7 +132,7 @@ html, body {
     bottom: 100px;
     display: flex;
     width: 70%;
-    height: 300px;
+    height:400px;
     margin: 0 auto;
 }
 
@@ -162,11 +162,16 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color:rgb(82, 163, 221)
+    color:rgb(82, 163, 221);
+    overflow: hidden;
+    text-overflow: clip; /* or 'ellipsis' if you want ... */
+    max-width: 100%;
+    min-width: 0;
+    flex-shrink: 1;
 }
 
 .box:hover{
-    flex-basis: 40%;
+    flex-basis: 50%;
 }
 
 .box:hover>img{
