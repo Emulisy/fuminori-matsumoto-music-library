@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
     <link rel="stylesheet" href="css/atri.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <script src="navbarClick.js"></script>
-    <script scr="floatIn.js"></script>
+    <script src="js/navbarClick.js"></script>
+    <script src="js/floatIn.js"></script>
 </head>
 
 <body>
@@ -19,12 +19,17 @@
         <ul class="nav-links">
             <li><a href="index.html">Main</a></li>
             <li><a href="atriSceneChange.html" id="atri">Atri</a></li>
-            <li><a href="#">Sakura no Uta</a></li>
+            <li><a href="sakura.html" id="sakura">Sakura no Uta</a></li>
             <li><a href="#">Wonderful everyday</a></li>
         </ul>
     </nav>
 
     <div id="blue-circle"></div>
+
+    <div class="sakura-container">
+        <div id="sakura-left"></div>
+        <div id="sakura-right"></div>
+    </div>
 
     <div class = "back-to-top" id="back-to-top"><img src="pic/arrow-up.png"></div>
 
@@ -88,7 +93,7 @@
     
             <!-- 音乐封面 -->
             <div class="img-container">
-                <img src="pic/atri_cg/ev000al.jpg" alt="music-cover" id="music-cover">
+                <img src="pic/atri_cg/凪.png" alt="music-cover" id="music-cover">
             </div>
             <!-- 播放控制 -->
             <div class="navigation">
@@ -104,51 +109,53 @@
             </div>
         </div>
     </div>
-    <div class="gallery-scroll-box" id="gallery-scroll-box">
-        <div class="gallery-container" id="gallery-container">
-            <div class="gallery-text-wrapper">
-                <h2>Background Gallery</h2>
-                <p>Personally, I appreciate the feeling of nature taking over human relics in a post-apocalypse world.
-                    This gallery are some pictures I chosen from the ATRI game that I found the most appealing.
-                </p>
+    <div id="gallery-wrapper">
+        <div class="gallery-scroll-box" id="gallery-scroll-box">
+            <div class="gallery-container" id="gallery-container">
+                <div class="gallery-text-wrapper">
+                    <h2>Background Gallery</h2>
+                    <p>Personally, I appreciate the feeling of nature taking over human relics in a post-apocalypse world.
+                        This gallery are some pictures I chosen from the ATRI game that I found the most appealing.
+                    </p>
+                </div>
+
+                <div class="scroll-down">Scroll right<img src="pic/angle-double-small-right.png"></div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg004e.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg001.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg005ae.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg005e.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg006b.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg008e.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg009.jpg">
+                </div>
+
+                <div class="gallery-img-box">
+                    <img src="pic/atri_bg/bg010e.jpg">
+                </div>
+
+                <div class="end-note"><p>More awaits inside ATRI...</p></div>
+
             </div>
-
-            <div class="scroll-down">Scroll down<img src="pic/chevron-double-down.png"></div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg004e.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg001.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg005ae.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg005e.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg006b.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg008e.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg009.jpg">
-            </div>
-
-            <div class="gallery-img-box">
-                <img src="pic/atri_bg/bg010e.jpg">
-            </div>
-
-            <div class="end-note"><p>More awaits inside ATRI...</p></div>
-
         </div>
     </div>
 </div>
@@ -369,6 +376,7 @@
             });
         });
 
+    
     </script>
 
 </body>

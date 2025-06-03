@@ -1,0 +1,228 @@
+/* Reset body styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Specific styles for sakura.html navbar */
+body:has(nav.navbar) .navTitle {
+    color: rgb(248, 153, 251); /* Pink color for the title */
+}
+
+body:has(nav.navbar) .nav-links li a {
+    color: rgb(241, 167, 244); /* Pink color for the links */
+}
+
+body:has(nav.navbar) .navbar {
+    background: rgba(255, 228, 240, 0.9);
+}
+
+body:has(nav.navbar) .nav-links {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 50px;
+    justify-content: center;
+    width: auto;
+}
+
+/* Split reveal animation styles */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    animation: hide-overlay 0s ease-in-out 1.5s forwards;
+}
+
+.split-left, .split-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('../pic/sakura_cg/Overlay.png');
+    background-size: 100vw 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 1.5s ease-in-out;
+}
+
+.split-left {
+    left: 0;
+    background-position: left center;
+    animation: split-left-reveal 1.5s ease-in-out;
+}
+
+.split-right {
+    right: 0;
+    background-position: right center;
+    animation: split-right-reveal 1.5s ease-in-out;
+}
+
+@keyframes hide-overlay {
+    to {
+        visibility: hidden;
+    }
+}
+
+@keyframes split-left-reveal {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-120%);
+    }
+}
+
+@keyframes split-right-reveal {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(120%);
+    }
+}
+
+.page1 {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.bg1-container {
+    width: 100%;
+    height: 80vh; /* Fixed height container */
+    position: relative;
+    overflow: hidden; /* Crop any overflow */
+}
+
+.page1 .bg1 {
+    position: absolute;
+    top: 0; /* Position from top */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top; /* Align image to top */
+    transform-origin: center;
+    animation: scaleDown 30s ease-out forwards;
+}
+
+@keyframes scaleDown {
+    0% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.galgame-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(248, 171, 226, 0.2);
+}
+
+.galgame-container {
+    position: relative;
+    width: 80%;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    font-family: YakuHanJP, noto-sans-cjk-jp, "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, Verdana, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.gal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.name-bar{
+    position: absolute;
+    bottom: 21%;
+    left: 2.5%;
+    font-size: 20px;
+    color: white;
+}
+
+.galgame-text-box {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 20%;
+    background-color: rgba(226, 223, 223, 0.7);
+    color: white;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    box-sizing: border-box;
+}
+
+.galgame-text-box p{
+    position: absolute;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.galgame-auto-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    font-size: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.click-continue {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 5%;
+    bottom: 15px;
+    cursor: pointer;
+    animation: bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukura</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/sakura.css">
+    <link type="text/css" rel="stylesheet" media="screen" href="css/jquery-sakura.min.css" />
+</head>
+
+<body>
+    <!-- Split reveal container -->
+    <div class="bg-overlay">
+        <div class="split-left"></div>
+        <div class="split-right"></div>
+    </div>
+
+    <nav class="navbar">
+        <h1 class="navTitle">櫻の森の上を舞う－</h1>
+        <ul class="nav-links">
+            <li><a href="index.html">Main</a></li>
+            <li><a href="atriSceneChange.html" id="atri">Atri</a></li>
+            <li><a href="sakura.html" id="sakura">Sakura no Uta</a></li>
+            <li><a href="#">Wonderful everyday</a></li>
+        </ul>
+    </nav>
+
+    <div id="blue-circle"></div>
+
+    <div class="sakura-container">
+        <div id="sakura-left"></div>
+        <div id="sakura-right"></div>
+    </div>
+
+    <div class="page1">
+        <div class="bg1-container">
+            <img src="pic/sakura_cg/p1-background.png" class="bg1">
+        </div>
+    </div>
+
+    <!-- background image of the galgame -->
+     <div class="galgame-page">
+        <div class="galgame-container">
+            <img class="gal-bg" src="pic/sakura_cg/1.png">
+            <div class="name-bar">夏目圭</div>
+            <div class="galgame-text-box">
+                <p id="gal-diolog"></p>
+                <img src="pic/icons8-arrow-down-60.png" class="click-continue">
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-top" id="back-to-top"><img src="pic/arrow-up.png"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-sakura.min.js"></script>
+    <script src="js/navbarClick.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            // Initialize sakura effect
+            $('body').sakura();
+
+            // Your existing galgame code
+            const diolog = document.querySelector("#gal-diolog");
+            const galName = document.querySelector(".name-bar")
+            const galBg = document.querySelector(".gal-bg")
+            const leftCharacter = document.querySelector('.character-box-left')
+            const rightCharacter = document.querySelector(".character-box-right")
+            const diologText = [
+                "我们从哪里来？我们是谁？我们到哪里去？", "我不知道...", "或许美能够在永远的相下(sub specie aeternitatis)窥见答案。"
+                , "美是虚无吗？", "它若是虚无的话虚无本身即是如此，至某种程度相通于众生。如同一切是我中的众生，故也是众生各自中的一切",
+                "艺术让我们看见美。", "艺术存在于自然中，艺术家的目的就是从生活中撷取美的片段，将永恒的美封存于一瞬之间。", "艺术让我们看见永远的相下。",
+                "艺术是美的, 幸福也是美的。","我的人生借由这些流动之物得以充实",  "......" ,"时间差不多了。", "是时候重新出发了。", "不必驻足于再也看不见的樱花前，也不必独自承受煎熬的苦痛；因果交流正是因为明灭的光亮而美丽，注定会在某个时刻汇聚为跃动的诗篇，我们才能因此获得对抗命运的勇气——王子得以新生，停滞的时间再次转动。",
+                "或许我们已经知道结果。", "来吧，举杯吧朋友！", "来吧，我们的人生洋溢着幸福!", "End"
+            ];
+            const nameText = ["夏目圭", "心铃", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭"]
+            let galProcessIndex = 0;
+            let writeInterval;
+
+            function startWriting() {
+                // Clear any existing text and interval
+                diolog.innerHTML = '';
+                if (writeInterval) {
+                    clearInterval(writeInterval);
+                }
+
+                // Get current text and split it
+                let words = diologText[galProcessIndex].split("");
+                let currentIndex = 0;
+
+                function write() {
+                    if (currentIndex < words.length) {
+                        let span = document.createElement("span");
+                        span.innerHTML = words[currentIndex];
+                        diolog.appendChild(span);
+                        currentIndex++;
+                    } else {
+                        clearInterval(writeInterval);
+                    }
+                }
+
+                writeInterval = setInterval(write, 50);
+            }
+
+            function changeBackground() {
+                setTimeout(() => {
+                    galBg.src = `pic/sakura_cg/${galProcessIndex}.png`;
+                }, 100);
+            }
+
+            // Start with first text
+            startWriting();
+
+            // Handle click to change text
+            document.querySelector(".galgame-container").addEventListener("click", function() {
+                console.log("gal clicked")
+                if (galProcessIndex < diologText.length - 1) {
+                    galProcessIndex++;
+                    startWriting();
+                    galName.textContent = nameText[galProcessIndex]
+                    changeBackground()
+                }
+            });
+        });
+
+        // Wait for window to fully load
+        jQuery(window).on('load', function($) {
+            // Reinitialize sakura effect after all resources are loaded
+            $('body').sakura();
+        });
+    </script>
+</body>
+</html>

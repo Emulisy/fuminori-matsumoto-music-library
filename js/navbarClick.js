@@ -2,7 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set up back-to-top button
   const backTop = document.querySelector('#back-to-top');
   if (backTop) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        console.log("show top")
+        backTop.style.display = 'flex';
+      } else {
+        backTop.style.display = 'none';
+      }
+    });
+
     backTop.addEventListener('click', function() {
+      console.log("to top clicked")
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -40,4 +51,26 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = targetUrl;
     }, 1500);
   });
+
+  const sakuraLink = document.getElementById('sakura');
+  if (sakuraLink) {
+    sakuraLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetUrl = this.getAttribute('href');
+      const sakuraContainer = document.querySelector('.sakura-container');
+      if (!sakuraContainer) return;
+
+      // Show and animate
+      sakuraContainer.style.display = 'block';
+      requestAnimationFrame(() => {
+        sakuraContainer.classList.add('show');
+      });
+
+      // Delay navigation
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 1500); // Match CSS transition duration
+    });
+  }
+
 });

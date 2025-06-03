@@ -131,7 +131,7 @@
     transition: all linear 0.5s;
     cursor: pointer;
     z-index: 999;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -140,4 +140,45 @@
     width: 60%;
     height: 60%;
     object-fit: contain;
+}
+
+.sakura-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+    display: none;
+}
+
+#sakura-left, #sakura-right {
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    background-image: url('../pic/sakura_cg/Overlay.png');
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    transition: transform 0.8s ease-out;
+}
+
+#sakura-left {
+    left: 0;
+    background-position: left center;
+    transform: translateX(-100%);
+}
+
+#sakura-right {
+    right: 0;
+    background-position: right center;
+    transform: translateX(100%);
+}
+
+.sakura-container.show #sakura-left {
+    transform: translateX(0);
+}
+
+.sakura-container.show #sakura-right {
+    transform: translateX(0);
 }

@@ -15,7 +15,7 @@
         <ul class="nav-links">
             <li><a href="index.html">Main</a></li>
             <li><a href="atriSceneChange.html" id="atri">Atri</a></li>
-            <li><a href="#">Sakura no Uta</a></li>
+            <li><a href="sakura.html" id="sakura">Sakura no Uta</a></li>
             <li><a href="#">Wonderful everyday</a></li>
         </ul>
         <div class="audio-control" onclick="toggleAudio()">
@@ -25,6 +25,11 @@
     </nav>
     
     <div id="blue-circle"></div>
+
+    <div class="sakura-container">
+        <div id="sakura-left"></div>
+        <div id="sakura-right"></div>
+    </div>
       
       
     
@@ -40,9 +45,6 @@
             </div>
         </div>
     </div>
-
-    <!-- The background overlay -->
-    <div class="background-overlay"></div>
     
     <!-- The background-video -->
     <video class="background-video" autoplay loop muted playsinline preload="auto">
@@ -94,7 +96,7 @@
             </div>
         </div>
         <div class="row2">
-            <img src="pic/Sakura_no_Uta_logo.jpg" style="width: 20%">
+            <img src="pic/img_sakuranouta.png" style="width: 20%">
         </div>
         <div class="row4">
             <div class="video-box">
@@ -108,6 +110,9 @@
                 normal life of the young artists who are still in high school. 
                 </p>
             </div>
+        </div>
+        <div class="row2">
+            <img src="pic/sakura_no_toki_logo.webp" style="width: 20%">
         </div>
         <div class="row5">
             <div class="video-box">
@@ -129,10 +134,10 @@
         <div class="row6">
             <div class="text-box">
                 <p>
-                Wonderful Everyday is developed by KeroQ and was released in 2010, which was given an international release in 2017 by Frontwing.
+                Wonderful Everyday is developed by KeroQ and was initially released in 2010. Later it was given an international release in 2017 by Frontwing.
                 The story is themed around campus bullying, violence, drugs, myths, sex, religion, Schizophrenia and other dark but realistic sides of human lives.
                 However, it is also a story about love, wishes, philosophy and enlightement. The game is by no means an full interpretation of important life issues and
-                doubts, but serves as a key for readers to the doors of self-reflection. Sometimes having the question is much more important than merely having the answers.
+                doubts, but serves as a key to the doors of self-reflection. Sometimes having the question is much more important than merely having the answers.
                 </p>
             </div>
             <div class="video-box">
@@ -182,7 +187,7 @@
             }
         }
     </script>
-    <script src="floatIn.js"></script>
-    <script src="navbarClick.js"></script>
+    <script src="js/floatIn.js"></script>
+    <script src="js/navbarClick.js"></script>
 </body>
 </html>
