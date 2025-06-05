@@ -37,6 +37,14 @@
         <div class="bg1-container">
             <img src="pic/sakura_cg/p1-background.png" class="bg1">
         </div>
+        <div class="trailer">
+            <a href="https://www.makura-soft.com/sakuranouta/index.html" target="_blank">
+                <img src="pic/img_sakuranouta.png" alt="Sakura no Uta">
+            </a>
+            <a href="https://www.makura-soft.com/sakuranotoki/" target="_blank">
+                <img src="pic/sakura_no_toki_logo.webp" alt="Sakura no Toki">
+            </a>
+        </div>
     </div>
 
     <!-- background image of the galgame -->
@@ -49,6 +57,53 @@
                 <img src="pic/icons8-arrow-down-60.png" class="click-continue">
             </div>
         </div>
+    </div>
+
+    <div class="page2">
+        <ul class="painting-wrapper" type="none">
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/easel.png" class="frame easal" >
+                    <img src="pic/sakura_painting/静流.png" class="painting vase">
+                </div>
+            </li>
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/frame.png" class="frame" >
+                    <img src="pic/sakura_painting/直哉2.png" class="painting">
+                </div>
+            </li>
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/frame.png" class="frame" >
+                    <img src="pic/sakura_painting/心铃.png" class="painting">
+                </div>
+            </li>
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/frame.png" class="frame" >
+                    <img src="pic/sakura_painting/恩田宁.png" class="painting">
+                </div>
+            </li>
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/frame.png" class="frame" >
+                    <img src="pic/sakura_painting/圭.png" class="painting">
+                </div>
+            </li>
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/frame.png" class="frame" >
+                    <img src="pic/sakura_painting/直哉.png" class="painting">
+                </div>
+            </li>
+            <li class="painting-item">
+                <div class="painting-img-container">
+                    <img src="pic/sakura_painting/frame.png" class="frame" >
+                    <img src="pic/sakura_painting/樱日狂想.png" class="painting">
+                </div>
+            </li>
+        </ul>
     </div>
 
     <div class="back-to-top" id="back-to-top"><img src="pic/arrow-up.png"></div>
@@ -71,7 +126,7 @@
                 "我们从哪里来？我们是谁？我们到哪里去？", "我不知道...", "或许美能够在永远的相下(sub specie aeternitatis)窥见答案。"
                 , "美是虚无吗？", "它若是虚无的话虚无本身即是如此，至某种程度相通于众生。如同一切是我中的众生，故也是众生各自中的一切",
                 "艺术让我们看见美。", "艺术存在于自然中，艺术家的目的就是从生活中撷取美的片段，将永恒的美封存于一瞬之间。", "艺术让我们看见永远的相下。",
-                "艺术是美的, 幸福也是美的。","我的人生借由这些流动之物得以充实",  "......" ,"时间差不多了。", "是时候重新出发了。", "不必驻足于再也看不见的樱花前，也不必独自承受煎熬的苦痛；因果交流正是因为明灭的光亮而美丽，注定会在某个时刻汇聚为跃动的诗篇，我们才能因此获得对抗命运的勇气——王子得以新生，停滞的时间再次转动。",
+                "艺术是美的, 幸福也是美的。","我的人生借由这些流动之物得以充实。",  "......" ,"时间差不多了。", "是时候重新出发了。", "不必驻足于再也看不见的樱花前，也不必独自承受煎熬的苦痛；因果交流正是因为明灭的光亮而美丽，注定会在某个时刻汇聚为跃动的诗篇，我们才能因此获得对抗命运的勇气——王子得以新生，停滞的时间再次转动。",
                 "或许我们已经知道结果。", "来吧，举杯吧朋友！", "来吧，我们的人生洋溢着幸福!", "End"
             ];
             const nameText = ["夏目圭", "心铃", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭"]
@@ -121,6 +176,79 @@
                     galName.textContent = nameText[galProcessIndex]
                     changeBackground()
                 }
+            });
+        });
+
+        const paintingPage = document.querySelector(".page2")
+        const paintings = document.querySelectorAll(".painting")
+        const frames = document.querySelectorAll(".frame")
+
+        // Add perspective to the container
+        document.querySelector('.painting-wrapper').style.perspective = '1000px';
+
+        paintingPage.addEventListener("mousemove", function(e) {
+            // Get mouse position relative to the page
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            // Get page dimensions
+            const pageRect = paintingPage.getBoundingClientRect();
+            
+            // Calculate center of the page
+            const centerX = pageRect.left + pageRect.width / 2;
+            const centerY = pageRect.top + pageRect.height / 2;
+            
+            // Calculate distance from center (normalized to -1 to 1)
+            const moveX = (mouseX - centerX) / (pageRect.width / 2);
+            const moveY = (mouseY - centerY) / (pageRect.height / 2);
+            
+            // Apply movement to each painting with different intensities
+            paintings.forEach((painting, index) => {
+                // Different movement intensity for each painting
+                const intensity = 0.05 + (index * 0.02); // Varies from 0.05 to 0.15
+                
+                // Calculate transform values
+                const translateX = moveX * intensity * 100; // Convert to pixels
+                const translateY = moveY * intensity * 100;
+                
+                // Calculate 3D rotation (lean towards cursor)
+                // Using negative values because we want to lean towards the cursor
+                const rotateY = -moveX * (2 + index * 0.5); // Varies from 2 to 4 degrees
+                const rotateX = moveY * (2 + index * 0.5); // Varies from 2 to 4 degrees
+                
+                // Check if painting is being hovered
+                const isHovered = painting.matches(':hover');
+                const scale = isHovered ? (painting.classList.contains('vase') ? 1.15 : 1.1) : 1;
+                
+                // Apply transform with translation, 3D rotation, and scale
+                painting.style.transform = `translate(${translateX}px, ${translateY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+                painting.style.transition = 'transform 0.2s ease-out';
+                // Add some depth to the paintings
+                painting.style.transformStyle = 'preserve-3d';
+            });
+
+            // Apply movement to frames with lower intensity (no 3D rotation for frames)
+            frames.forEach((frame, index) => {
+                // Frame movement intensity is half of the painting intensity
+                const intensity = (0.01 + (index * 0.02)) * 0.3; // Varies from 0.025 to 0.075
+                
+                // Calculate transform values
+                const translateX = moveX * intensity * 100;
+                const translateY = moveY * intensity * 100;
+                
+                // Apply transform with smooth transition
+                frame.style.transform = `translate(${translateX}px, ${translateY}px)`;
+                frame.style.transition = 'transform 0.1s ease-out';
+            });
+        });
+
+        // Reset paintings and frames position when mouse leaves the page
+        paintingPage.addEventListener("mouseleave", function() {
+            paintings.forEach(painting => {
+                painting.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg)';
+            });
+            frames.forEach(frame => {
+                frame.style.transform = 'translate(0px, 0px)';
             });
         });
 
