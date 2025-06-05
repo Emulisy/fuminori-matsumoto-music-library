@@ -50,11 +50,15 @@
     <!-- background image of the galgame -->
      <div class="galgame-page">
         <div class="galgame-container">
-            <img class="gal-bg" src="pic/sakura_cg/1.png">
-            <div class="name-bar">夏目圭</div>
+            <img class="gal-bg">
+            <div class="name-bar"></div>
             <div class="galgame-text-box">
                 <p id="gal-diolog"></p>
                 <img src="pic/icons8-arrow-down-60.png" class="click-continue">
+                <div class="show-text">记录</div>
+            </div>
+            <div class="show-text-page">
+                <div class="show-text-box"></div>
             </div>
         </div>
     </div>
@@ -186,17 +190,91 @@
             const galBg = document.querySelector(".gal-bg")
             const leftCharacter = document.querySelector('.character-box-left')
             const rightCharacter = document.querySelector(".character-box-right")
-            const diologText = [
-                "我们从哪里来？我们是谁？我们到哪里去？", "我不知道...", "或许美能够在永远的相下(sub specie aeternitatis)窥见答案。"
-                , "美是虚无吗？", "它若是虚无的话虚无本身即是如此，至某种程度相通于众生。如同一切是我中的众生，故也是众生各自中的一切",
-                "艺术让我们看见美。", "艺术存在于自然中，艺术家的目的就是从生活中撷取美的片段，将永恒的美封存于一瞬之间。", "艺术让我们看见永远的相下。",
-                "艺术是美的, 幸福也是美的。","我的人生借由这些流动之物得以充实。",  "......" ,"时间差不多了。", "是时候重新出发了。", "不必驻足于再也看不见的樱花前，也不必独自承受煎熬的苦痛；因果交流正是因为明灭的光亮而美丽，注定会在某个时刻汇聚为跃动的诗篇，我们才能因此获得对抗命运的勇气——王子得以新生，停滞的时间再次转动。",
-                "或许我们已经知道结果。", "来吧，举杯吧朋友！", "来吧，我们的人生洋溢着幸福!", "End"
-            ];
-            const nameText = ["夏目圭", "心铃", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭", "夏目圭"]
+            let diologText = [];
+            let nameText = [];
             let galProcessIndex = 0;
             let writeInterval;
+            let bgImg = [];
 
+            // Load the dialogue when document is ready
+            loadDialogue();
+
+            // Fetch and load the dialogue from text.json
+            async function loadDialogue() {
+                try {
+                    const response = await fetch('text.json');
+                    const data = await response.json();
+                    
+                    // Process the JSON data into our arrays
+                    diologText = data.map(item => {
+                        const [speaker, content] = Object.entries(item)[0];
+                        return content.text.replace(/^「|」$/g, ''); // Remove the 「」 quotes
+                    });
+                    
+                    nameText = data.map(item => {
+                        const [speaker] = Object.entries(item)[0];
+                        // Map speaker names to display names
+                        switch(speaker) {
+                            case '圭': return '夏目圭';
+                            case '心鈴': return '本间心铃';
+                            case '旁白': return '';
+                            default: return speaker;
+                        }
+                    });
+
+                    // Store background images
+                    bgImg = data.map(item => {
+                        const [speaker, content] = Object.entries(item)[0];
+                        return content.bg || ''; // Return empty string if no bg specified
+                    });
+
+                    // Set up initial state
+                    galName.textContent = nameText[0];
+                    if (bgImg[0] && bgImg[0].trim() !== "") {
+                        galBg.src = bgImg[0];
+                    }
+                    // Start with first text after loading
+                    startWriting();
+                } catch (error) {
+                    console.error('Error loading dialogue:', error);
+                }
+            }
+
+            // Function to update dialog history
+            function updateDialogHistory() {
+                const showTextBox = document.querySelector('.show-text-box');
+                showTextBox.innerHTML = ''; // Clear existing content
+                
+                // Add all dialogs up to current index
+                for (let i = 0; i <= galProcessIndex; i++) {
+                    const dialogDiv = document.createElement('div');
+                    dialogDiv.style.marginBottom = '15px';
+                    dialogDiv.style.padding = '10px';
+                    
+                    // Add name if it exists
+                    if (nameText[i]) {
+                        const nameDiv = document.createElement('div');
+                        nameDiv.style.fontWeight = 'bold';
+                        nameDiv.style.color = '#ff69b4';
+                        nameDiv.style.marginBottom = '5px';
+                        nameDiv.textContent = nameText[i];
+                        dialogDiv.appendChild(nameDiv);
+                    }
+                    
+                    // Add dialog text
+                    const textDiv = document.createElement('div');
+                    textDiv.style.lineHeight = '1.5';
+                    textDiv.textContent = diologText[i];
+                    dialogDiv.appendChild(textDiv);
+                    
+                    showTextBox.appendChild(dialogDiv);
+                }
+                
+                // Scroll to bottom of the history
+                showTextBox.scrollTop = showTextBox.scrollHeight;
+            }
+
+            // Update the startWriting function to also update history
             function startWriting() {
                 // Clear any existing text and interval
                 diolog.innerHTML = '';
@@ -216,29 +294,42 @@
                         currentIndex++;
                     } else {
                         clearInterval(writeInterval);
+                        // Update dialog history after text is fully written
+                        updateDialogHistory();
                     }
                 }
 
                 writeInterval = setInterval(write, 50);
             }
 
-            function changeBackground() {
-                setTimeout(() => {
-                    galBg.src = `pic/sakura_cg/${galProcessIndex}.png`;
-                }, 100);
-            }
-
-            // Start with first text
-            startWriting();
+            // Update the click handler to also update history when showing
+            document.querySelector('.show-text').addEventListener('click', function(event) {
+                event.stopPropagation();
+                
+                const showTextPage = document.querySelector('.show-text-page');
+                if (showTextPage.style.opacity === '1') {
+                    showTextPage.style.opacity = '0';
+                    showTextPage.style.pointerEvents = 'none';
+                } else {
+                    showTextPage.style.opacity = '1';
+                    showTextPage.style.pointerEvents = 'auto';
+                    // Update history when showing the box
+                    updateDialogHistory();
+                }
+            });
 
             // Handle click to change text
             document.querySelector(".galgame-container").addEventListener("click", function() {
-                console.log("gal clicked")
                 if (galProcessIndex < diologText.length - 1) {
-                    galProcessIndex++;
+                    galProcessIndex++; // Increment index first
                     startWriting();
-                    galName.textContent = nameText[galProcessIndex]
-                    changeBackground()
+                    galName.textContent = nameText[galProcessIndex];
+                    
+                    // Handle background changes if needed
+                    const currentBg = bgImg[galProcessIndex];
+                    if (currentBg && currentBg.trim() !== "") {
+                        galBg.src = currentBg;
+                    }
                 }
             });
         });

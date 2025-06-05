@@ -400,7 +400,7 @@ body:has(nav.navbar) .nav-links {
     transform: translateX(-50%);
     width: 100%;
     height: 20%;
-    background-color: rgba(226, 223, 223, 0.7);
+    background-color: rgba(226, 223, 223, 0.9);
     color: white;
     padding: 20px;
     border-radius: 0 0 8px 8px;
@@ -413,20 +413,38 @@ body:has(nav.navbar) .nav-links {
     font-size: 20px;
 }
 
-.galgame-auto-button {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    background-color: transparent;
-    cursor: pointer;
-    transition: transform 0.5s ease;
+.show-text{
     font-size: 15px;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 10px;
-    border-radius: 4px;
+    width: 8%;
+    height: 20px;
+    text-align: center;
+    position: absolute;
+    right: 5%;
+    top: -15%;
+    transition: 0.4s ease;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgba(226, 223, 223, 0.9);
+}
+
+.show-text:hover{
+    transform: scale(1.15);
+}
+
+.show-text-page {
+    height: 80%;
+    width: 100%;
+    background-color: rgba(226, 223, 223, 0.626);
+    position: absolute;
+    top: 0;
+    overflow-y: scroll;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.show-text-box{
+    font-size: 20px;
 }
 
 .click-continue {
