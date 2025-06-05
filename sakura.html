@@ -112,6 +112,70 @@
     <script src="js/jquery-sakura.min.js"></script>
     <script src="js/navbarClick.js"></script>
     <script>
+        // Function to check if all images are loaded
+        function checkAllImagesLoaded() {
+            return new Promise((resolve) => {
+                const images = document.querySelectorAll('img');
+                let loadedImages = 0;
+                const totalImages = images.length;
+
+                // If there are no images, resolve immediately
+                if (totalImages === 0) {
+                    resolve();
+                    return;
+                }
+
+                // Function to check if all images are loaded
+                function imageLoaded() {
+                    loadedImages++;
+                    if (loadedImages === totalImages) {
+                        resolve();
+                    }
+                }
+
+                // Check each image
+                images.forEach(img => {
+                    // If image is already loaded
+                    if (img.complete) {
+                        imageLoaded();
+                    } else {
+                        // If image is still loading
+                        img.addEventListener('load', imageLoaded);
+                        img.addEventListener('error', imageLoaded); // Also count failed loads
+                    }
+                });
+            });
+        }
+
+        // Function to start the overlay animation
+        function startOverlayAnimation() {
+            const overlay = document.querySelector('.bg-overlay');
+            const splitLeft = document.querySelector('.split-left');
+            const splitRight = document.querySelector('.split-right');
+
+            // Add reveal classes to trigger the animation
+            splitLeft.classList.add('reveal');
+            splitRight.classList.add('reveal');
+
+            // Hide the overlay after animation completes
+            setTimeout(() => {
+                overlay.classList.add('hide');
+            }, 1500);
+        }
+
+        // Wait for DOM and all resources to load
+        window.addEventListener('load', async function() {
+            // Wait for all images to load
+            await checkAllImagesLoaded();
+            
+            // Initialize sakura effect
+            $('body').sakura();
+            
+            // Start the overlay animation
+            startOverlayAnimation();
+        });
+
+        // Your existing galgame code
         jQuery(document).ready(function($) {
             // Initialize sakura effect
             $('body').sakura();
@@ -250,12 +314,6 @@
             frames.forEach(frame => {
                 frame.style.transform = 'translate(0px, 0px)';
             });
-        });
-
-        // Wait for window to fully load
-        jQuery(window).on('load', function($) {
-            // Reinitialize sakura effect after all resources are loaded
-            $('body').sakura();
         });
     </script>
 </body>

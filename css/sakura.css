@@ -43,7 +43,6 @@ body:has(nav.navbar) .nav-links {
     height: 100vh;
     z-index: 9999;
     pointer-events: none;
-    animation: hide-overlay 0s ease-in-out 1.5s forwards;
 }
 
 .split-left, .split-right {
@@ -61,15 +60,29 @@ body:has(nav.navbar) .nav-links {
 .split-left {
     left: 0;
     background-position: left center;
-    animation: split-left-reveal 1.5s ease-in-out;
+    transform: translateX(0);
 }
 
 .split-right {
     right: 0;
     background-position: right center;
-    animation: split-right-reveal 1.5s ease-in-out;
+    transform: translateX(0);
 }
 
+/* Add new classes for the animation */
+.bg-overlay.hide {
+    visibility: hidden;
+}
+
+.split-left.reveal {
+    transform: translateX(-120%);
+}
+
+.split-right.reveal {
+    transform: translateX(120%);
+}
+
+/* Keep the keyframes for reference but they won't be used directly */
 @keyframes hide-overlay {
     to {
         visibility: hidden;
