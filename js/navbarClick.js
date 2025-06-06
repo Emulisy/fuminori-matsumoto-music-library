@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Set up back-to-top button
   const backTop = document.querySelector('#back-to-top');
+  
   if (backTop) {
     // Show/hide button based on scroll position
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 300) {
-        console.log("show top")
         backTop.style.display = 'flex';
       } else {
         backTop.style.display = 'none';
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     backTop.addEventListener('click', function() {
-      console.log("to top clicked")
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

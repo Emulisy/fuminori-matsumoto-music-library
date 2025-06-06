@@ -33,6 +33,8 @@
         <div id="sakura-right"></div>
     </div>
 
+    <div class="sakura-generator"></div>
+
     <div class="page1">
         <div class="bg1-container">
             <img src="pic/sakura_cg/p1-background.png" class="bg1">
@@ -172,19 +174,17 @@
             // Wait for all images to load
             await checkAllImagesLoaded();
             
-            // Initialize sakura effect
-            $('body').sakura();
-            
             // Start the overlay animation
             startOverlayAnimation();
         });
+        
 
-        // Your existing galgame code
         jQuery(document).ready(function($) {
             // Initialize sakura effect
-            $('body').sakura();
+            $('.sakura-generator').sakura();
 
-            // Your existing galgame code
+            
+            // galgame page start
             const diolog = document.querySelector("#gal-diolog");
             const galName = document.querySelector(".name-bar")
             const galBg = document.querySelector(".gal-bg")
@@ -333,6 +333,9 @@
                 }
             });
         });
+
+
+        //galgame page end-
 
         const paintingPage = document.querySelector(".page2")
         const paintings = document.querySelectorAll(".painting")
