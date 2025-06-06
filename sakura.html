@@ -145,6 +145,48 @@
         </ul>
     </div>
 
+    <div class="page3">
+        <div class="item" data-song="交差視覚の季節">
+            <img src="audio/sakura audio/交差視覚の季節.png" alt="sakura">
+        </div>
+        <div class="item" data-song="刻の繭の外へ">
+            <img src="audio/sakura audio/刻の繭の外へ.png" alt="sakura">
+        </div>
+        <div class="item" data-song="刻ト詩 - OP Short ver -">
+            <img src="audio/sakura audio/刻ト詩 - OP Short ver -.png" alt="sakura">
+        </div>
+        <div class="item" data-song="向日葵の嵐が過ぎ去り">
+            <img src="audio/sakura audio/向日葵の嵐が過ぎ去り.png" alt="sakura">
+        </div>
+        <div class="item" data-song="吹き上がる音と言葉">
+            <img src="audio/sakura audio/吹き上がる音と言葉.png" alt="sakura">
+        </div>
+        <div class="item" data-song="夢水の調べ">
+            <img src="audio/sakura audio/夢水の調べ.png" alt="sakura">
+        </div>
+        <div class="item" data-song="木履と横道">
+            <img src="audio/sakura audio/木履と横道.png" alt="sakura">
+        </div>
+        <div class="item" data-song="櫻ノ詩 (OP short ver)">
+            <img src="audio/sakura audio/櫻ノ詩 (OP short ver).png" alt="sakura">
+        </div>
+        <div class="item" data-song="欠けた絵画は盈ちて">
+            <img src="audio/sakura audio/欠けた絵画は盈ちて.png" alt="sakura">
+        </div>
+        <div class="item" data-song="筆射す光">
+            <img src="audio/sakura audio/筆射す光.png" alt="sakura">
+        </div>
+        <div class="item" data-song="美しい音色で世界が鳴った">
+            <img src="audio/sakura audio/美しい音色で世界が鳴った.png" alt="sakura">
+        </div>
+        <div class="item" data-song="舞い降りる風景画">
+            <img src="audio/sakura audio/舞い降りる風景画.png" alt="sakura">
+        </div>
+        <div class="item" data-song="風景はせはしく明滅し">
+            <img src="audio/sakura audio/風景はせはしく明滅し.png" alt="sakura">
+        </div>
+    </div>
+
     <div class="back-to-top" id="back-to-top"><img src="pic/arrow-up.png"></div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -448,7 +490,8 @@
         const songs = ["櫻ノ詩 (OP short ver)", "交差視覚の季節", "刻ト詩 - OP Short ver -", "刻の繭の外へ", "向日葵の嵐が過ぎ去り", 
         "吹き上がる音と言葉", "夢水の調べ", "木履と横道", "欠けた絵画は盈ちて", "筆射す光"
         , "美しい音色で世界が鳴った", "舞い降りる風景画", "風景はせはしく明滅し"
-    ]
+        ]
+
         // Get DOM elements
         const title = document.getElementById('title');
         const audio = document.getElementById('audio');
@@ -459,6 +502,23 @@
         const nextBtn = document.getElementById('next');
         const progress = document.getElementById('progress');
         const progressContainer = document.getElementById('progress-container');
+
+        // Add click handlers for song items
+        document.querySelectorAll('.page3 .item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                // Find the song index based on the data-song attribute
+                const songName = item.getAttribute('data-song');
+                const songIndex = songs.findIndex(song => song === songName);
+                
+                if (songIndex !== -1) {
+                    // Update the current song index
+                    window.songIndex = songIndex;
+                    // Load and play the selected song
+                    loadSong(songs[songIndex]);
+                    playSong();
+                }
+            });
+        });
 
         // 默认从第一首开始
         let songIndex = 0;

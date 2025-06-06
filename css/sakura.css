@@ -470,7 +470,7 @@ body:has(nav.navbar) .nav-links {
 .page2 .painting-wrapper .painting-item:nth-child(5) {
     position: absolute;
     left: 25%;
-    top: 65%;
+    top: 60%;
     width: 50%;
     height: 50%;
 }
@@ -478,7 +478,7 @@ body:has(nav.navbar) .nav-links {
 .page2 .painting-wrapper .painting-item:nth-child(6) {
     position: absolute;
     left: 50%;
-    top: 63%;
+    top: 57%;
     width: 50%;
     height: 50%;
 }
@@ -604,6 +604,94 @@ body:has(nav.navbar) .nav-links {
     50% {
         transform: translateY(-5px);
     }
+}
+
+.page3 {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(248, 171, 226, 0.2);
+    padding: 5%;
+    column-count: 4;
+    column-gap: 30px;
+    column-fill: balance;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .page3 {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 900px) {
+    .page3 {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .page3 {
+        column-count: 1;
+    }
+}
+
+.item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.item:hover {
+    transform: scale(1.02);
+}
+
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.item img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.page3 .item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.page3 .item::after {
+    content: attr(data-song);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 10px;
+    background: linear-gradient(to top, 
+        rgba(255, 192, 203, 0.4),  /* Light pink with 40% opacity */
+        rgba(255, 192, 203, 0)     /* Transparent */
+    );
+    color: white;
+    font-size: 1.1em;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-sizing: border-box;
+    transform: translateY(100%);
+    font-family: "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, Meiryo, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.page3 .item:hover::after {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
